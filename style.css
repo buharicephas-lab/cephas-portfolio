@@ -365,3 +365,38 @@ footer p {
   color: #cbd5e1;
   margin: 0;
 }
+
+.project-search {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin: 25px auto;
+    max-width: 500px;
+}
+
+.project-search label {
+    color: #c4b5fd;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.project-search input {
+    width: 100%;
+    padding: 14px 16px;
+    background-color: #1e293b;
+    color: #f8fafc;
+    border: 1px solid #64748b;
+    border-radius: 10px;
+    font-size: 15px;
+    box-sizing: border-box;
+}
+
+.project-search input::placeholder {
+    color: #94a3b8;
+}
+
+.project-search input:focus {
+    outline: 2px solid #c4b5fd;
+    outline-offset: 2px;
+    border-color: #c4b5fd;
+}

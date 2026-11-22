@@ -63,20 +63,49 @@
         <img src="profile.jpg" alt="Portrait of Cephas" />
       </section>
 
+     
+
+    
+
       <!-- Projects Section -->
       <section id="projects">
         <h2>My Projects</h2>
 
         <p>
-          Here are some of the projects I have built while learning programming
-          and web development.
+            Here are some of the projects I have built while learning
+            programming and web development.
         </p>
 
-        <div class="projects-grid" id="projects-container">
-          <!-- JavaScript will generate project cards here -->
-          
-          
+        <div class="project-search">
+            <label for="project-search">Search Projects</label>
+
+            <input
+                type="search"
+                id="project-search"
+                placeholder="Search by project name or technology"
+            >
         </div>
+
+        <div class="projects-grid" id="projects-container">
+            <!-- JavaScript will generate project cards here -->
+        </div>
+      </section>
+      
+      <section id="github-projects">
+        <h2>My Github Repositories</h2>
+
+        <p>
+          Explore my public Github repositories and the projects
+          I am currently working on.
+        </p>
+
+        <div id="github-status" role="status" aria-live="polite"></div>
+
+        <div class="projects-grid" id="github-container">
+          <!--Github repositories will appear here-->
+
+        </div>
+
       </section>
 
       <!-- Skills Section -->
