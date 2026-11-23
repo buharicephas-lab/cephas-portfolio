@@ -303,6 +303,96 @@ githubSearch.addEventListener("input", filterGithubRepositories);
 
 githubLanguage.addEventListener("change", filterGithubRepositories);
 
+// CONTACT FORM VALIDATION
 
+const contactForm = document.querySelector("#contact-form");
 
+const nameInput = document.querySelector("#name");
+
+const emailInput = document.querySelector("#email");
+
+const messageInput = document.querySelector("#message");
+
+const nameError = document.querySelector("#name-error");
+
+const emailError = document.querySelector("#email-error");
+
+const messageError = document.querySelector("#message-error");
+
+const formStatus = document.querySelector("#form-status");
+
+function isValidEmail(email) {
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    return emailPattern.test(email);
+}
+
+function showError(input, errorElement, message) {
+    errorElement.textContent = message;
+
+    input.setAttribute("aria-invalid", "true");
+}
+
+function clearError(input, errorElement) {
+    errorElement.textContent = "";
+
+    input.removeAttribute("aria-invalid");
+}
+
+contactForm.addEventListener("submit", function(event) {
+    event.preventDefault();
+
+    const name = nameInput.value.trim();
+
+    const email = emailInput.value.trim();
+
+    const message = messageInput.value.trim();
+
+    let isValid = true;
+
+    clearError(nameInput, nameError);
+
+    clearError(emailInput, emailError);
+
+    clearError(messageInput, messageError);
+
+    formStatus.textContent = "";
+
+    if (name.length < 3) {
+        showError(
+            nameInput,
+            nameError,
+            "Name must contain at least 3 characters."
+        );
+
+        isValid = false;
+    }
+
+    if (!isValidEmail(email)) {
+        showError(
+            emailInput,
+            emailError,
+            "Please enter a valid email address."
+        );
+
+        isValid = false;
+    }
+
+    if (message.length < 10) {
+        showError(
+            messageInput,
+            messageError,
+            "Message must contain at least 10 characters."
+        );
+
+        isValid = false;
+    }
+
+    if (isValid) {
+        formStatus.textContent =
+            "Validation successful! Your message is ready.";
+    } else {
+        contactForm.querySelector('[aria-invalid="true"]').focus();
+    }
+});
 

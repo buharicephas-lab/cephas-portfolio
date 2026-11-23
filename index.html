@@ -185,7 +185,7 @@
           Have a question or want to connect? Feel free to send me a message.
         </p>
 
-        <form id="contact-form">
+        <form id="contact-form" novalidate>
           <!-- Full Name -->
           <label for="name">Full Name</label>
           <input
@@ -194,9 +194,11 @@
             name="name"
             placeholder="Enter your full name"
             autocomplete="name"
+            aria-describedby="name-error"
             required
           />
 
+          <p id="name-error" class="error-message" aria-live="polite"></p>
           <!-- Email Address -->
           <label for="email">Email Address</label>
           <input
@@ -205,8 +207,11 @@
             name="email"
             placeholder="Enter your email address"
             autocomplete="email"
+            aria-describedby="email-error"
             required
           />
+
+          <p id="email-error" class="error-message" aria-live="polite"></p>
 
           <!-- Message -->
           <label for="message">Your Message</label>
@@ -215,10 +220,15 @@
             name="message"
             rows="5"
             placeholder="Write your message here..."
+            aria-describedby="message-error"
             required
           ></textarea>
 
+          <p id="message-error" class="error-message" aria-live="polite"></p>
+
           <button type="submit">Send Message</button>
+
+          <p id="form-status" role="status"></p>
         </form>
       </section>
     </main>

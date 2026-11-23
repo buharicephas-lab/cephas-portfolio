@@ -487,3 +487,25 @@ footer p {
     margin-top: 20px;
     padding-left: 25px;
 }
+
+.error-message {
+    color: #fca5a5;
+    font-size: 14px;
+    margin: -12px 0 15px;
+}
+
+.error-message:empty {
+    display: none;
+}
+
+#contact-form input[aria-invalid="true"],
+#contact-form textarea[aria-invalid="true"] {
+    border: 2px solid #ef4444;
+}
+
+#form-status {
+    color: #86efac;
+    font-weight: bold;
+    text-align: center;
+    margin-top: 15px;
+}
