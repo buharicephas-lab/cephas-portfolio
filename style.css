@@ -509,3 +509,95 @@ footer p {
     text-align: center;
     margin-top: 15px;
 }
+
+/* Theme toggle button */
+
+#theme-toggle {
+    background-color: transparent;
+    color: #c4b5fd;
+    border: 1px solid #a78bfa;
+    border-radius: 8px;
+    padding: 10px 16px;
+    font: inherit;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+#theme-toggle:focus-visible {
+    outline: 2px solid #a78bfa;
+    outline-offset: 4px;
+}
+
+/* Light theme */
+
+body.light-mode {
+    background-color: #f1f5f9;
+    color: #0f172a;
+}
+
+.light-mode header,
+.light-mode #about,
+.light-mode #skills,
+.light-mode footer,
+.light-mode .projects-grid article,
+.light-mode .skills-grid article,
+.light-mode #contact-form {
+    background-color: #ffffff;
+}
+
+.light-mode h2,
+.light-mode h3,
+.light-mode #home h2,
+.light-mode .hero-intro,
+.light-mode .logo,
+.light-mode .project-search label,
+.light-mode .github-filters label {
+    color: #6d28d9;
+}
+
+.light-mode p,
+.light-mode .nav-links a,
+.light-mode .project-details,
+.light-mode #contact-form label,
+.light-mode .btn-secondary {
+    color: #334155;
+}
+
+.light-mode .btn-secondary:hover {
+    background-color: #e2e8f0;
+}
+
+.light-mode input,
+.light-mode select,
+.light-mode textarea,
+.light-mode #contact-form input,
+.light-mode #contact-form textarea,
+.light-mode .project-search input,
+.light-mode .github-filters input,
+.light-mode .github-filters select {
+    background-color: #f8fafc;
+    color: #0f172a;
+}
+
+.light-mode #theme-toggle {
+    color: #6d28d9;
+}
+
+.light-mode .error-message {
+    color: #b91c1c;
+}
+
+.light-mode #form-status {
+    color: #15803d;
+}
+
+.light-mode #projects h2,
+.light-mode #skills h2,
+.light-mode #contact h2 {
+    color: #6d28d9;
+}
+
+.light-mode .skills-grid article {
+    background-color: #f1f5f9;
+    border: 1px solid #e2e8f0;
+}

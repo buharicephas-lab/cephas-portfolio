@@ -396,3 +396,63 @@ contactForm.addEventListener("submit", function(event) {
     }
 });
 
+const themeToggle = document.querySelector("#theme-toggle");
+
+let currentTheme = "dark";
+
+function applyTheme(theme) {
+    document.body.classList.toggle(
+        "light-mode",
+        theme === "light"
+    );
+
+    themeToggle.textContent = 
+        theme === "light" ? "Dark Mode" : "Light Mode";
+}
+
+function loadTheme() {
+    try {
+        const savedTheme = localStorage.getItem("portfolioTheme");
+
+        if (savedTheme) {
+            const preference = JSON.parse(savedTheme);
+
+            if (
+                preference &&
+                (preference.theme === "light" ||
+                 preference.theme === "dark")
+            ) {
+                return preference.theme;
+            }
+        }
+    } catch (error) {
+        console.warn("Unable to read saved theme.");
+    }
+
+    return "dark";
+}
+
+currentTheme = loadTheme();
+
+applyTheme(currentTheme);
+
+themeToggle.addEventListener("click", function() {
+    currentTheme =
+        currentTheme === "dark" ? "light" : "dark";
+
+    applyTheme(currentTheme);
+
+    try {
+        const preference = {
+            theme: currentTheme
+        };
+
+        localStorage.setItem(
+            "portfolioTheme",
+            JSON.stringify(preference)
+        );
+
+    } catch (error) {
+        console.warn("Unable to save theme preference.");
+    }
+});
