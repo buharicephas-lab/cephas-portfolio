@@ -50,6 +50,8 @@ function createProjectCard(project) {
 
     detailsButton.textContent = "View Details";
 
+    detailsButton.classList.add("details-button");
+
     detailsButton.setAttribute("aria-expanded", "false");
 
     
@@ -140,7 +142,7 @@ container.addEventListener("click", function(event){
 
     details.hidden = !details.hidden;
 
-    button.textContent = details.hidden;
+    
 
     button.textContent = details.hidden
         ? "View Details"

@@ -459,3 +459,31 @@ footer p {
         grid-template-columns: repeat(2, minmax(0, 1fr));
     }
 }
+
+.details-button {
+    background-color: #7c3aed;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 8px;
+    font: inherit;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.details-button:hover {
+    background-color: #5b21b6;
+}
+
+.details-button:focus-visible {
+    outline: 2px solid #c4b5fd;
+    outline-offset: 4px;
+}
+
+.project-details {
+    text-align: left;
+    color: #cbd5e1;
+    margin-top: 20px;
+    padding-left: 25px;
+}
