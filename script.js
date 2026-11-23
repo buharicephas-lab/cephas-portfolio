@@ -1,22 +1,24 @@
 const projects = [
     {
         title: "Medium Landing Page",
-        technology: "HTML . CSS",
+        technology: "HTML, CSS",
         image: "medium.png",
-        description: "A recreation of the Medium Landing page using HTML and CSS focusing on layout, typography, and visual design."
+        description: "A recreation of the Medium Landing page using HTML and CSS focusing on layout, typography, and visual design.",
+        skills: ["HTML structure", "CSS styling", "Responsive layouts"]
     },
     {
         title: "Personal Portfolio",
-        technology: "HTML . CSS",
+        technology: "HTML, CSS",
         image: "portfolio.png",
-        description: "A personal portfolio website built using HTML and CSS to showcase my background, skills, and projects."
-
+        description: "A personal portfolio website built using HTML and CSS to showcase my background, skills, and projects.",
+        skills: ["Semantic HTML", "CSS Grid", "Flexbox"]
     },
     {
         title: "Mario(CS50)",
         technology: "C Programming",
         image: "Mario.png",
-        description: "A C programming project completed during Harvard's CS50 course, using nested loops to generate Mario-style pyramids."
+        description: "A C programming project completed during Harvard's CS50 course, using nested loops to generate Mario-style pyramids.",
+        skills: ["C programming", "Nested loops", "Problem-solving"]
     }
 ];
 
@@ -42,6 +44,29 @@ function createProjectCard(project) {
     const technology = document.createElement("p");
 
     technology.textContent = project.technology;
+    const detailsButton = document.createElement("button");
+
+    detailsButton.type = "button";
+
+    detailsButton.textContent = "View Details";
+
+    detailsButton.setAttribute("aria-expanded", "false");
+
+    
+
+    const skillsList = document.createElement("ul");
+
+    skillsList.classList.add("project-details");
+
+    skillsList.hidden = true;
+
+    project.skills.forEach(function(skills){
+        const item = document.createElement("li");
+
+        item.textContent = skills;
+
+        skillsList.appendChild(item);
+    });
 
     card.appendChild(image);
 
@@ -50,6 +75,10 @@ function createProjectCard(project) {
     card.appendChild(description);
 
     card.appendChild(technology);
+
+    card.appendChild(detailsButton);
+
+    card.appendChild(skillsList);
 
     return card;
 }
@@ -96,6 +125,29 @@ searchInput.addEventListener("input", function() {
     });
 
     
+});
+
+container.addEventListener("click", function(event){
+    const button = event.target.closest(".details-button");
+
+    if (!button) {
+        return;
+    }
+
+    const card = button.closest("article");
+
+    const details = card.querySelector(".project-details");
+
+    details.hidden = !details.hidden;
+
+    button.textContent = details.hidden;
+
+    button.textContent = details.hidden
+        ? "View Details"
+        : "Hide Details";
+
+    button.setAttribute("aria-expanded", String(!details.hidden));
+
 });
 
 const githubContainer = document.querySelector("#github-container");
@@ -165,6 +217,9 @@ function populateLanguages() {
 async function loadGithubRepositories() {
     githubStatus.textContent = "Loading repositories....";
 
+     githubSearch.disabled = true;
+     githubLanguage.disabled = true;
+
     try {
         const response = await fetch(
             "https://api.github.com/users/buharicephas-lab/repos"
@@ -174,8 +229,6 @@ async function loadGithubRepositories() {
             throw new Error("Failed to load repositories");
         }
 
-        githubSearch.disabled = true;
-        githubLanguage.disabled = true;
 
         
         const repositories = await response.json();
