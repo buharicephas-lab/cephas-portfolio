@@ -102,6 +102,13 @@ const githubContainer = document.querySelector("#github-container");
 
 const githubStatus = document.querySelector("#github-status");
 
+const githubSearch = document.querySelector("#github-search");
+
+const githubLanguage = document.querySelector("#github-language");
+
+
+let githubRepositories = [];
+
 function createGithubCard(repository) {
     const card = document.createElement("article");
 
@@ -135,6 +142,26 @@ function createGithubCard(repository) {
     return card;
 }
 
+function populateLanguages() {
+    const languages = githubRepositories.map(function(repository){
+        return repository.language;
+    });
+
+    const uniqueLanguages = [...new Set(languages)];
+
+    uniqueLanguages.forEach(function(language) {
+        if (language) {
+            const option = document.createElement("option");
+
+            option.value = language;
+
+            option.textContent = language;
+
+            githubLanguage.appendChild(option);
+        }
+    });
+}
+
 async function loadGithubRepositories() {
     githubStatus.textContent = "Loading repositories....";
 
@@ -147,8 +174,18 @@ async function loadGithubRepositories() {
             throw new Error("Failed to load repositories");
         }
 
+        githubSearch.disabled = true;
+        githubLanguage.disabled = true;
+
         
         const repositories = await response.json();
+
+        githubRepositories = repositories;
+
+        populateLanguages();
+
+        githubSearch.disabled = false;
+        githubLanguage.disabled = false;
 
         githubContainer.replaceChildren();
 
@@ -175,6 +212,41 @@ async function loadGithubRepositories() {
 
 loadGithubRepositories();
 
+
+
+function filterGithubRepositories() {
+    const searchText = githubSearch.value.trim().toLowerCase();
+
+    const selectedLanguage = githubLanguage.value;
+
+    const filteredRepositories = githubRepositories.filter(function(repository) {
+        const matchesSearch = repository.name.toLowerCase().includes(searchText);
+
+        const matchesLanguage =
+            selectedLanguage === "all" ||
+            repository.language === selectedLanguage;
+
+        return matchesSearch && matchesLanguage;
+    });
+
+    githubContainer.replaceChildren();
+
+    if (filteredRepositories.length === 0) {
+        githubStatus.textContent = "No matching repositories found.";
+    } else {
+        githubStatus.textContent = "";
+
+        filteredRepositories.forEach(function(repository) {
+            const card = createGithubCard(repository);
+
+            githubContainer.appendChild(card);
+        });
+    }
+}
+
+githubSearch.addEventListener("input", filterGithubRepositories);
+
+githubLanguage.addEventListener("change", filterGithubRepositories);
 
 
 
